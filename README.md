@@ -8,7 +8,7 @@ There are currently 2 prototypes available to view:
 
 https://jimmyreno.github.io/index.html
 
-Shows the distribution of results by time/gender. This chart also contains a sample filter that displays the results of my clubmates in Brothers Pearse A.C. 
+Shows the distribution of results by time/gender. This chart also contains a sample filter that displays the results of my club-mates in Brothers Pearse A.C. 
 
 Also of note in this chart are the peaks at certain finsh times - these represent large packs of runners following the pace-makers in order to hit their target times.
 
