@@ -1,0 +1,73 @@
+#simulator-chart {
+    width: 100%;
+    padding: 0px;
+    margin-top: 2px;
+    height: 850px;
+
+    #theMap {
+        height: 100%;
+    }
+}
+
+#route {
+    stroke: red;
+    fill: none;
+    //opacity: 0.1;
+    stroke-width: 5px;
+}
+
+#marker {
+    fill: green;
+}
+
+#clock-chart,
+#estimated-position-chart {
+    //width: 100%;
+    //height: 100%;
+    padding: 10px;
+    background: #ffffff;
+    opacity: 0.8;
+
+    .clock-header {
+        display: inline;
+        padding-right: 24px;
+    }
+    .clock-text,
+    .position-text {
+        font-size: 60px;
+        line-height: 60px;
+        height: 60px;
+    }
+}
+
+#clock-chart {
+    position: absolute;
+    bottom: 120px;
+    left: 70px;
+    height: 100px;
+}
+
+#elevation-chart {
+    width: 640px;
+    position: absolute;
+    left: 10px;
+    bottom: 20px;
+    background: #ffffff;
+    opacity: 0.8;
+    padding: 3px;
+}
+
+#clock-chart,
+#estimated-position-chart {
+    position: absolute;
+    left: 10px;
+}
+#estimated-position-chart {
+    bottom: 240px;
+    left: 10px;
+}
+.elev-line {
+    stroke: red !important;
+    stroke-width: 2px !important;
+    fill: none;
+}
