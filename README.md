@@ -1,4 +1,4 @@
-## Dublin Marathon Visualization Project (Early Prototype version)
+## Dublin Marathon Visualization Project (early prototype)
 
 The idea behind this project was to explore how to visualize race results data from nothing other than the result information made available online by race organizers.
 
