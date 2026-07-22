@@ -86,6 +86,10 @@ function colorScale(name) {
 function getBranchColor(d) {
   // d is the link object. We traverse up from the target node.
   let current = d.target;
+
+  if(!current.parent) {
+    return colorScale(current.parent);
+  }
   
   // Walk up the tree until the current node's parent is the root.
   // We know a node is the root if it has no parent (parent is null/undefined).
