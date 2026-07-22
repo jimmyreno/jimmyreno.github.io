@@ -48,6 +48,50 @@ function getY(d) {
   return yearToY(d.born);
 };
 
+// /**
+//  * Checks if a node is a descendant of another node in a D3 tree.
+//  * 
+//  * @param {Object} node - The potential descendant node.
+//  * @param {Object} ancestorNode - The potential ancestor node.
+//  * @returns {boolean} True if 'node' is a descendant of 'ancestorNode'.
+//  */
+// function getDescendantColor(node) {
+//   // If either node is missing, it can't be a descendant
+//   if (!node) return '#ccc';
+
+//   // Start checking from the immediate parent
+//   let current = node.parent;
+
+//   // Traverse up the tree
+//   while (current !== null && current !== undefined) {
+//     if (current.firstname === "Hilda") {
+//       return 'green';
+//     }
+//     current = current.parent; // Move one level higher
+//   }
+
+//   return '#ccc'; // Reached the root without finding a color-coded ancestor
+// }
+
+function colorScale(name) {
+  console.log('colorScale name: ', name);
+}
+  
+function getBranchColor(d) {
+  // d is the link object. We traverse up from the target node.
+  let current = d.target;
+  
+  // Walk up the tree until the current node's parent is the root.
+  // We know a node is the root if it has no parent (parent is null/undefined).
+  while (current.parent && current.parent.parent) {
+    current = current.parent;
+  }
+  
+  // Now 'current' is the level 1 ancestor (root + 1).
+  // We feed a unique identifier (like name or ID) into the color scale.
+  return colorScale(current.firstname); 
+}
+
 var tree = d3.layout.tree()
     .size([360, diameter / 2 - 120])
     .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
@@ -61,6 +105,8 @@ var diagonal = d3.svg.diagonal.radial()
       })
     .target(function(d){ return {x: d.target.x, y: getY(d.target)};})
     .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
+
+
 
 var svg = d3.select("body").append("svg")
     .attr("width", diameter)
@@ -78,7 +124,8 @@ d3.json("./raw_data/family.json", function(error, root) {
       .data(links)
     .enter().append("path")
       .attr("class", "link")
-      .attr("d", diagonal);
+      .attr("d", diagonal)
+      .style("stroke", getBranchColor);
 
 
   var decade = svg.selectAll(".decade")
