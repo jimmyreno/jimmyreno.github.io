@@ -105,7 +105,7 @@ d3.json("./raw_data/family.json", function(error, root) {
       .attr("class", "node")
       .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + getY(d) + ")"; })
 
-  var c = d3.scale.category10();
+  var c = d3.scale.category19();
   node.append("circle")
       .attr("r", 4.5)
       .attr("stroke", function(d){return c(d.depth)});
