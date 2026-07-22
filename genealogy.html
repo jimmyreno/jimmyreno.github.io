@@ -157,8 +157,12 @@ d3.json("./raw_data/family.json", function(error, root) {
 
         // Loop through each word/line and append as a <tspan>
         words.forEach(function(word, i) {
+            let w = word;
+            if (i > 0) {
+              w = 'm ' + w;
+            }
             text.append("tspan")
-                .text(word)
+                .text(w)
                 .attr("x", 0) // Align to the node center/left
                 .attr("dy", i === 0 ? 0 : "1.2em"); // Offset subsequent lines
         });
