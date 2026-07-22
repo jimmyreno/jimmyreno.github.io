@@ -31,7 +31,7 @@
 
 .link {
   fill: none;
-  stroke: #ccc;
+  // stroke: #ccc;
   stroke-width: 1.5px;
 }
 
@@ -75,6 +75,19 @@ function getY(d) {
 
 function colorScale(name) {
   console.log('colorScale name: ', name);
+  if (name === 'Hilda m Patrick Fennell') {
+    return 'green';
+  }
+  if (name === 'Jim m Carmel Moran') {
+    return 'red';
+  }
+  if (name === 'Frances m Daniel Heffernan') {
+    return 'blue';
+  }
+  if (name === 'John m Evelyn Walsh') {
+    return 'yellow';
+  }
+  return '#ccc';
 }
   
 function getBranchColor(d) {
