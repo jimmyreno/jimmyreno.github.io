@@ -52,10 +52,10 @@ var diameter = 1200;
 function yearToY(year) {
   const a = year - 1857;
   if (year < 1910) {
-    return (year-1857)*1.7;
+    return (year-1857)*2.2;
   }
   else {
-    return (year-1857)*4.5;
+    return ((year-1857)*4.5) - 30;
   }
   // return (year-1857)*3.5;
 }
