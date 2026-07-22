@@ -18,6 +18,12 @@
 
 .node {
   font: 12px sans-serif;
+  opacity: 0.7;
+}
+
+.nodeName0 {
+  font: 13px sans-serif;
+  opacity: 1;
 }
 
 .decade {
@@ -161,7 +167,8 @@ d3.json("./raw_data/family.json", function(error, root) {
             text.append("tspan")
                 .text(w)
                 .attr("x", 0) // Align to the node center/left
-                .attr("dy", i === 0 ? 0 : "1.2em"); // Offset subsequent lines
+                .attr("dy", i === 0 ? 0 : "1.2em") // Offset subsequent lines
+                .attr("class", "nodeName" + i);
         });
     });
 });
