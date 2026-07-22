@@ -48,7 +48,17 @@
 
 var diameter = 1200;
 
-function yearToY(year){ return (year-1857)*3.5;}
+function yearToY(year) {
+  const a = year - 1857;
+  if (year < 1910) {
+    return (year-1857)*1.7;
+  }
+  else {
+    return (year-1857)*4.5;
+  }
+  // return (year-1857)*3.5;
+}
+
 function getY(d) { 
   //return d.y;
   return yearToY(d.born);
