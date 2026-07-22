@@ -88,6 +88,7 @@ function getBranchColor(d) {
   let current = d.target;
 
   if (current == null) {
+    console.log('null circle..');
     return colorScale(current);
   }
   
@@ -162,6 +163,7 @@ d3.json("./raw_data/family.json", function(error, root) {
       .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + getY(d) + ")"; })
 
   var c = d3.scale.category10();
+  console.log('appending circle..');
   node.append("circle")
       .attr("r", 4.5)
       .attr("stroke", getBranchColor); 
