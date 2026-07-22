@@ -3,7 +3,7 @@
   "born": 1905,
   "children": [
     {
-      "firstname": "John m Evelyn Walsh",
+      "firstname": "John \nm Evelyn Walsh",
       "born": 1909,
       "children": [
         {
@@ -11,7 +11,7 @@
           "born": 1943
         },
         {
-          "firstname": "Billy m Gene",
+          "firstname": "Billy \nm Gene",
           "born": 1946,
           "children": [
             {
@@ -25,7 +25,7 @@
               ]
             },
             {
-              "firstname": "Monique m David Spalding",
+              "firstname": "Monique \nm David Spalding",
               "born": 1977,
               "children": [
                 {
@@ -47,11 +47,11 @@
       ]
     },
     {
-      "firstname": "Jim m Carmel Moran",
+      "firstname": "Jim \nm Carmel Moran",
       "born": 1910,
       "children": [
         {
-          "firstname": "Will m Merle / Diane Zawacki",
+          "firstname": "Will \nm Merle / Diane Zawacki",
           "born": 1946,
           "children": [
             {
