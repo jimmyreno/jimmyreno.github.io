@@ -72,7 +72,7 @@ function getBranchColor(d) {
   // Walk up the tree until the current node's parent is the root.
   // We know a node is the root if it has no parent (parent is null/undefined).
   // while (current.parent && current.parent.parent) {
-  while (current.parent.parent) {
+  while (current.parent.parent.parent) {
     current = current.parent;
   }
   
@@ -95,8 +95,6 @@ var diagonal = d3.svg.diagonal.radial()
     .target(function(d){ return {x: d.target.x, y: getY(d.target)};})
     .projection(function(d) { return [d.y, d.x / 180 * Math.PI]; });
 
-
-
 var svg = d3.select("body").append("svg")
     .attr("width", diameter)
     .attr("height", diameter)
@@ -115,7 +113,6 @@ d3.json("./raw_data/family.json", function(error, root) {
       .attr("class", "link")
       .attr("d", diagonal)
       .style("stroke", getBranchColor);
-
 
   var decade = svg.selectAll(".decade")
       .data([1860,1870,1880,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2010,2020])
@@ -167,10 +164,6 @@ d3.json("./raw_data/family.json", function(error, root) {
                 .attr("dy", i === 0 ? 0 : "1.2em"); // Offset subsequent lines
         });
     });
-  
-      // .text(function(d) {
-      //     return d.firstname; 
-      // });
 });
 
 d3.select(self.frameElement).style("height", diameter - 150 + "px");
