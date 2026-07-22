@@ -48,31 +48,6 @@ function getY(d) {
   return yearToY(d.born);
 };
 
-// /**
-//  * Checks if a node is a descendant of another node in a D3 tree.
-//  * 
-//  * @param {Object} node - The potential descendant node.
-//  * @param {Object} ancestorNode - The potential ancestor node.
-//  * @returns {boolean} True if 'node' is a descendant of 'ancestorNode'.
-//  */
-// function getDescendantColor(node) {
-//   // If either node is missing, it can't be a descendant
-//   if (!node) return '#ccc';
-
-//   // Start checking from the immediate parent
-//   let current = node.parent;
-
-//   // Traverse up the tree
-//   while (current !== null && current !== undefined) {
-//     if (current.firstname === "Hilda") {
-//       return 'green';
-//     }
-//     current = current.parent; // Move one level higher
-//   }
-
-//   return '#ccc'; // Reached the root without finding a color-coded ancestor
-// }
-
 function colorScale(name) {
   // console.log('colorScale name: ', name);
   if (name === 'Hilda m Patrick Fennell') {
