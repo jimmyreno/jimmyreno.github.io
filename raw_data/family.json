@@ -634,7 +634,7 @@
           "born": 1949,
           "children": [
             {
-              "firstname": "John m Grania",
+              "firstname": "John m Grainne Foley",
               "born": 1977,
               "children": [
                 {
@@ -652,7 +652,7 @@
               ]
             },
             {
-              "firstname": "James m Noela White",
+              "firstname": "James m Noella White",
               "born": 1980,
               "children": [
                 {
@@ -666,7 +666,7 @@
               ]
             },
             {
-              "firstname": "Rosemary",
+              "firstname": "Rosemary m Aodhan O'Murchu",
               "born": 1980
             },
             {
@@ -674,8 +674,14 @@
               "born": 1984
             },
             {
-              "firstname": "Raymond m Ciara",
-              "born": 1990
+              "firstname": "Raymond m Caoimhe Feehily",
+              "born": 1990,
+              "children": [
+                {
+                  "firstname": "Rú",
+                  "born": 2013
+                }
+              ]
             }
           ]
         },
