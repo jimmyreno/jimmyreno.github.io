@@ -113,7 +113,23 @@ d3.json("./raw_data/family.json", function(error, root) {
       .attr("dy", ".31em")
       .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
       .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
-      .text(function(d) { return d.firstname; });
+      .each(function(d) {
+        // Split your string into an array of words/lines (e.g., by spaces or newlines)
+        var words = d.firstname.split(" m ");
+        var text = d3.select(this);
+
+        // Loop through each word/line and append as a <tspan>
+        words.forEach(function(word, i) {
+            text.append("tspan")
+                .text(word)
+                .attr("x", 0) // Align to the node center/left
+                .attr("dy", i === 0 ? 0 : "1.2em"); // Offset subsequent lines
+        });
+    });
+  
+      // .text(function(d) {
+      //     return d.firstname; 
+      // });
 });
 
 d3.select(self.frameElement).style("height", diameter - 150 + "px");
