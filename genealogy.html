@@ -34,6 +34,7 @@
 
 .title {
   font: 14px sans-serif;
+  font-weight: bold;
 }
 
 .link {
@@ -144,7 +145,7 @@ d3.json("./raw_data/family.json", function(error, root) {
       .text(function(d) { return d; });
 
   svg.selectAll(".title")
-    .data(["William Russell (b. 1857) m Ellen Cahil in 1905"])
+    .data(["William Russell (b. 1857) m Ellen Cahill in 1905"])
     .enter().append("text")
       .attr("class", "title")
       .attr("transform", function(d) { return "translate(-50,20)" })
