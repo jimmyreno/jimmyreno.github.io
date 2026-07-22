@@ -77,8 +77,8 @@ function getBranchColor(d) {
   
   // Walk up the tree until the current node's parent is the root.
   // We know a node is the root if it has no parent (parent is null/undefined).
-  // while (current.parent && current.parent.parent) {
-  while (current.parent.parent.parent) {
+  while (current.parent && current.parent.parent) {
+  // while (current.parent.parent) {
     current = current.parent;
   }
   
