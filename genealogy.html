@@ -160,7 +160,9 @@ d3.json("./raw_data/family.json", function(error, root) {
   var c = d3.scale.category10();
   node.append("circle")
       .attr("r", 4.5)
-      .attr("stroke", function(d){return c(d.depth)});
+      .attr("stroke", getBranchColor); 
+          // function(d){return c(d.depth)});
+  
   node.append("text")
       .attr("dy", ".31em")
       .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
