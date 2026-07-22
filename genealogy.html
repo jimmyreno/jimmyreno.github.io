@@ -104,6 +104,25 @@ function getBranchColor(d) {
   return colorScale(current.firstname); 
 }
 
+function getCircleColor(d) {
+  if (d == null) {
+    console.log('null circle..');
+    return colorScale(current);
+  }
+  
+  // Walk up the tree until the current node's parent is the root.
+  // We know a node is the root if it has no parent (parent is null/undefined).
+  while (d.parent && d.parent.parent) {
+  // while (current.parent.parent) {
+    d = d.parent;
+  }
+  
+  // Now 'current' is the level 1 ancestor (root + 1).
+  // We feed a unique identifier (like name or ID) into the color scale.
+  return colorScale(d.firstname); 
+}
+
+
 var tree = d3.layout.tree()
     .size([360, diameter / 2 - 120])
     .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
@@ -166,7 +185,7 @@ d3.json("./raw_data/family.json", function(error, root) {
   console.log('appending circle..');
   node.append("circle")
       .attr("r", 4.5)
-      .attr("stroke", getBranchColor); 
+      .attr("stroke", getCircleColor); 
           // function(d){return c(d.depth)});
   
   node.append("text")
