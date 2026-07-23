@@ -1,50 +1,97 @@
 <!DOCTYPE html>
 <html>
-<head><title>Lepage-Bandet Descendants</title>
-<meta charset="utf-8">
+<head>
+  <title>Russell Family Tree (1857 to 2026)</title>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+
+    h4 {
+      font-size: 18px;
+      font-weight: 400;
+      color: #475569;
+      margin: 0 0 32px 0;
+      text-align: center;
+    }
+
+    .page-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 80px 0 10px 0;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+
+    .node circle, .node rect {
+      fill: #fff;
+      stroke-width: 1.5px;
+    }
+
+    .decade circle {
+      fill: none;
+      stroke: #e2e8f0;
+      stroke-width: 0.5px;
+    }
+
+    .decade-1900 circle,
+    .decade-1950 circle,
+    .decade-2000 circle {
+      stroke: #ccc;
+      stroke-width: 0.5px;
+    }
+
+    .node {
+      font: 12px 'Inter', sans-serif;
+      opacity: 0.7;
+    }
+
+    .nodeName0 {
+      font: 13px 'Inter', sans-serif;
+      opacity: 1;
+      font-weight: 600;
+    }
+
+    .nodeName1 {
+      font: 10.5px 'Inter', sans-serif;
+    }
+
+    .decade {
+      font: 12px 'Inter', sans-serif;
+      fill: #94a3b8;
+      opacity: 0.7;
+    }
+
+    .title {
+      font: 14px 'Inter', sans-serif;
+      font-weight: 700;
+      fill: #334155;
+    }
+
+    .link {
+      fill: none;
+      opacity: 0.27;
+      stroke-width: 1.5px;
+    }
+  </style>
 </head>
-<style>
-
-.node circle, .node rect {
-  fill: #fff;
-  stroke-width: 1.5px;
-}
-
-.decade circle {
-  fill: none;
-  stroke: #ddd;
-  stroke-width: 0.5px;
-}
-
-.node {
-  font: 12px sans-serif;
-  opacity: 0.7;
-}
-
-.nodeName0 {
-  font: 13px sans-serif;
-  opacity: 1;
-  font-weight: bold;
-}
-
-.decade {
-  font: 12px sans-serif;
-  fill: #999;
-}
-
-.title {
-  font: 14px sans-serif;
-  font-weight: bold;
-}
-
-.link {
-  fill: none;
-  opacity: 0.25;
-  stroke-width: 1.5px;
-}
-
-</style>
 <body>
+  <h1 class="page-title">The Russell Family Tree</h1>
+  <h4>1857 to 2026</h4>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script>
 
@@ -52,13 +99,27 @@ var diameter = 1200;
 
 function yearToY(year) {
   const a = year - 1857;
-  if (year < 1930) {
+  // if (year <= 1940) {
+  //   return (year-1857)*2.3;
+  // }
+  // if (year > 1940 && year <= 1970) {
+  //   return ((year-1857)*4.5) - 180;
+  // }
+  // else {
+  //   return ((year-1857)*4.1) - 120;
+  // }
+
+  // return (year-1857)*3.5;
+
+  if (year <= 1940) {
     return (year-1857)*2.2;
   }
-  else {
-    return ((year-1857)*4.3) - 145;
+  if (year > 1940 && year <= 1960) {
+    return ((year-1857)*3.5) - 120;
   }
-  // return (year-1857)*3.5;
+  else {
+    return ((year-1857)*4.6) - 210;
+  }
 }
 
 function getY(d) { 
@@ -80,12 +141,21 @@ function colorScale(name) {
   if (name === 'John m Evelyn Walsh') {
     return '#FFD740';
   }
+  if (name === '') { // root node
+    return '#ccc';
+  }
   return '#ccc';
 }
   
 function getBranchColor(d) {
   // d is the link object. We traverse up from the target node.
   let current = d.target;
+  let source = d.source;
+
+  if (source.firstname === '') {
+    // If the source is the root node, we can use its color directly.
+    return colorScale(source.firstname);
+  }
 
   if (current == null) {
     console.log('null circle..');
@@ -158,8 +228,10 @@ d3.json("./raw_data/family.json", function(error, root) {
 
   var decade = svg.selectAll(".decade")
       .data([1860,1870,1880,1890,1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2010,2020])
-    .enter().append("g")
-      .attr("class", "decade")
+      .enter().append("g")
+      .attr("class", function(d) { return "decade decade-" + d; });
+      // .attr("class", "spanner");
+
   decade.append("circle")
       .attr("r", function(d){return yearToY(d)});
 
@@ -172,7 +244,7 @@ d3.json("./raw_data/family.json", function(error, root) {
     .data(["William Russell & Ellen Cahill"])
     .enter().append("text")
       .attr("class", "title")
-      .attr("transform", function(d) { return "translate(-50,20)" })
+      .attr("transform", function(d) { return "translate(-90,20)" })
       .text(function(d) { return d; });
 
   var node = svg.selectAll(".node")
